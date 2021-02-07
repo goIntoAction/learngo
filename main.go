@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"learngo/queue"
 	"learngo/stack"
 )
 
@@ -16,11 +17,12 @@ var keepElement *Element
 
 func main() {
 	//caesar()
-	data := [10]int{9, 3, 7, 2, 4, 1, 5, 8, 6, 10}
-	quickSortByStack(&data)
+	// data := [10]int{9, 3, 7, 2, 4, 1, 5, 8, 6, 10}
+	// quickSortByStack(&data)
 	// quickSort(0, len(data)-1, &data)
 	// bubbleSort(&data)
-	fmt.Println(data)
+	// fmt.Println(data)
+	testQueue()
 }
 
 func quickSort(startIndex, endIndex int, data *[10]int) {
@@ -177,4 +179,21 @@ func getElement() (start *Element) {
 		latest.Next = start
 	}
 	return
+}
+
+// func isValid(s string) bool {
+
+// }
+
+func testQueue() {
+	queue := queue.New()
+	queue.Offer(1)
+	queue.Offer(2)
+	queue.Offer(3)
+	queue.Offer(4)
+	queue.Offer(5)
+	for queue.Len() > 0 {
+		value := queue.Peek()
+		fmt.Println(value)
+	}
 }
