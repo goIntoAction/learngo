@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"test/stack"
+	"learngo/stack"
 )
 
 type Element struct {
