@@ -18,7 +18,8 @@ func main() {
 	//caesar()
 	data := [10]int{9, 3, 7, 2, 4, 1, 5, 8, 6, 10}
 	// quickSortStack(0, len(data)-1, &data)
-	bubbleSort(&data)
+	quickSort(0, len(data)-1, &data)
+	// bubbleSort(&data)
 	fmt.Println(data)
 }
 
@@ -31,19 +32,25 @@ func quickSort(startIndex, endIndex int, data *[10]int) {
 	pivot := data[startIndex]
 
 	for left != right {
-		for left < right && data[right] >= pivot {
+		for left < right && data[right] > pivot {
 			right--
 		}
-		for left < right && data[left] < pivot {
+		for left < right && data[left] <= pivot {
 			left++
 		}
 		if left < right {
 			data[left], data[right] = data[right], data[left]
 		}
 	}
-	data[startIndex], data[left] = data[left], data[startIndex]
-	quickSort(startIndex, left-1, data)
-	quickSort(left+1, endIndex, data)
+	if data[startIndex] > data[left] {
+		data[startIndex], data[left] = data[left], data[startIndex]
+	}
+	if startIndex < left-1 {
+		quickSort(startIndex, left-1, data)
+	}
+	if left+1 < endIndex {
+		quickSort(left+1, endIndex, data)
+	}
 }
 
 func quickSortStack(startIndex, endIndex int, data *[10]int) {
@@ -60,17 +67,19 @@ func quickSortStack(startIndex, endIndex int, data *[10]int) {
 		r := right
 		pivot := data[l]
 		for left != right {
-			for left < right && data[right] >= pivot {
+			for left < right && data[right] < pivot {
 				right--
 			}
-			for left < right && data[left] < pivot {
+			for left < right && data[left] >= pivot {
 				left++
 			}
 			if left < right {
 				data[left], data[right] = data[right], data[left]
 			}
 		}
-		data[l], data[left] = data[left], data[l]
+		if data[startIndex] < data[left] {
+			data[l], data[left] = data[left], data[l]
+		}
 		if l < left-1 {
 			stack.Push(l)
 			stack.Push(left - 1)
