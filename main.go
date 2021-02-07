@@ -17,8 +17,8 @@ var keepElement *Element
 func main() {
 	//caesar()
 	data := [10]int{9, 3, 7, 2, 4, 1, 5, 8, 6, 10}
-	// quickSortStack(0, len(data)-1, &data)
-	quickSort(0, len(data)-1, &data)
+	quickSortStack(0, len(data)-1, &data)
+	// quickSort(0, len(data)-1, &data)
 	// bubbleSort(&data)
 	fmt.Println(data)
 }
@@ -42,9 +42,9 @@ func quickSort(startIndex, endIndex int, data *[10]int) {
 			data[left], data[right] = data[right], data[left]
 		}
 	}
-	if data[startIndex] > data[left] {
-		data[startIndex], data[left] = data[left], data[startIndex]
-	}
+
+	data[startIndex], data[left] = data[left], data[startIndex]
+
 	if startIndex < left-1 {
 		quickSort(startIndex, left-1, data)
 	}
@@ -61,11 +61,13 @@ func quickSortStack(startIndex, endIndex int, data *[10]int) {
 	stack.Push(startIndex)
 	stack.Push(endIndex)
 	for stack.Len() > 0 {
+		fmt.Printf("soure %v\n", *data)
 		right := stack.Pop().(int)
 		left := stack.Pop().(int)
 		l := left
 		r := right
 		pivot := data[l]
+		fmt.Printf("pivot %v\n", pivot)
 		for left != right {
 			for left < right && data[right] < pivot {
 				right--
@@ -75,11 +77,13 @@ func quickSortStack(startIndex, endIndex int, data *[10]int) {
 			}
 			if left < right {
 				data[left], data[right] = data[right], data[left]
+				fmt.Printf("first %v\n", *data)
 			}
 		}
-		if data[startIndex] < data[left] {
-			data[l], data[left] = data[left], data[l]
-		}
+		data[l], data[left] = data[left], data[l]
+		fmt.Printf("second %v\n", *data)
+		fmt.Println("================")
+
 		if l < left-1 {
 			stack.Push(l)
 			stack.Push(left - 1)
