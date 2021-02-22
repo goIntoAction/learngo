@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"learngo/leetcode"
 	"learngo/queue"
 	"learngo/stack"
 )
@@ -16,13 +17,7 @@ var startElement *Element
 var keepElement *Element
 
 func main() {
-	//caesar()
-	// data := [10]int{9, 3, 7, 2, 4, 1, 5, 8, 6, 10}
-	// quickSortByStack(&data)
-	// quickSort(0, len(data)-1, &data)
-	// bubbleSort(&data)
-	// fmt.Println(data)
-	testQueue()
+	leetcode.LeetCode42()
 }
 
 func quickSort(startIndex, endIndex int, data *[10]int) {
